@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Fri Jul 08 01:37:22 PDT 2016:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-0155-c9a7-7197-00000e010180 
+on database directory /Users/vgoel1/Documents/workspace/YelpReviews/metastore_db with class loader sun.misc.Launcher$AppClassLoader@4cc77c2e 
+Loaded from file:/usr/local/Cellar/hive/2.0.1/libexec/lib/derby-10.10.2.0.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_51-b16
+user.dir=/Users/vgoel1/Documents/workspace/YelpReviews
+os.name=Mac OS X
+os.arch=x86_64
+os.version=10.10.5
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''

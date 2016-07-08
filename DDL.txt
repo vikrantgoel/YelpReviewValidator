@@ -1,0 +1,15 @@
+CREATE TABLE IF NOT EXISTS business(
+    business_id STRING,
+    name STRING,
+    full_address STRING,
+    city STRING,
+    state STRING,
+    open BOOLEAN,
+    categories STRING,
+    review_count INT,
+    stars DECIMAL(10,6),
+    neighborhoods STRING,
+    longitude DECIMAL(10,6),
+    latitude DECIMAL(10,6),
+    attributes STRING
+) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
