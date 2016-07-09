@@ -1,6 +1,7 @@
 package HiveLibrary;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -29,6 +30,7 @@ public class HiveClient {
 	 */
 	public String executeHiveQuery(String query) throws IOException {
 		
+		System.out.println("Running in HIVE: " + query);
 		// Prepare the command to run in bash
 		StringBuilder querysSB = new StringBuilder();
 		querysSB.append("source " + bashProfile + "; ");
@@ -58,5 +60,14 @@ public class HiveClient {
 		}
 
 		return returnSB.toString();
+	}
+	
+	public void loadFromFileToTable(String sourceFile, String destTable, boolean truncateTable) throws IOException{
+		StringBuilder sb = new StringBuilder();
+		
+		if(truncateTable)
+			sb.append("TRUNCATE TABLE " + destTable + "; ");
+		sb.append("LOAD DATA LOCAL INPATH '" + sourceFile + "' INTO TABLE " + destTable +";");
+		executeHiveQuery(sb.toString());
 	}
 }
