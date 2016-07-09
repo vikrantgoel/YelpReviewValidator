@@ -15,5 +15,7 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="json-simple-1.1.1.jar"/>
 	<classpathentry kind="lib" path="mysql-connector-java-5.1.26-bin.jar"/>
+	<classpathentry kind="lib" path="commons-lang3-3.4-javadoc.jar"/>
+	<classpathentry kind="lib" path="commons-lang3-3.4.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
