@@ -1,7 +1,6 @@
-package HiveLibrary;
+package clients;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -21,13 +20,6 @@ public class HiveClient {
 		LOGGING = logging;
 	}
 	
-	/**
-	 * This method constructs a bash command using the input hive query 
-	 * and runs it as a process on command line
-	 * @param hiveQueryString
-	 * @return hiveOutput
-	 * @throws IOException
-	 */
 	public String executeHiveQuery(String query) throws IOException {
 		
 		System.out.println("Running in HIVE: " + query);
@@ -60,14 +52,5 @@ public class HiveClient {
 		}
 
 		return returnSB.toString();
-	}
-	
-	public void loadFromFileToTable(String sourceFile, String destTable, boolean truncateTable) throws IOException{
-		StringBuilder sb = new StringBuilder();
-		
-		if(truncateTable)
-			sb.append("TRUNCATE TABLE " + destTable + "; ");
-		sb.append("LOAD DATA LOCAL INPATH '" + sourceFile + "' INTO TABLE " + destTable +";");
-		executeHiveQuery(sb.toString());
 	}
 }

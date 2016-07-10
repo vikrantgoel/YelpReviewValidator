@@ -1,3 +1,8 @@
+CREATE TABLE IF NOT EXISTS checkin(
+ business_id STRING,
+checkin_info STRING
+) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+
 CREATE TABLE IF NOT EXISTS tip(
 business_id STRING,
     user_id STRING,
