@@ -45,7 +45,7 @@ public class YelpMaster {
 		ht = new HiveTemplates(); 
 		ft = new FileTemplates(); 
 		
-//		businessLoadToHive();
+		businessLoadToHive();
 //		usersLoadToHive();
 //		reviewLoadToHive();
 //		tipLoadToHive();
