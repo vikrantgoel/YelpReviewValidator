@@ -7,6 +7,7 @@ import clients.HiveClient;
 import templates.FileTemplates;
 import templates.HiveTemplates;
 
+
 public class YelpMaster {
 	
 	final public static boolean ENABLE_LOGIN = true;
