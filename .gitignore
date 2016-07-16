@@ -1,3 +1,4 @@
 # yelp data
 *.json
 yelp_academic_dataset_*.txt
+*.class
