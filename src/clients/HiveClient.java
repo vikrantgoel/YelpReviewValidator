@@ -8,7 +8,6 @@ public class HiveClient {
 
 	private String defaultDatabase;
 	final static String bashProfile = System.getenv("HOME") + "/.bash_profile";
-	final static String hiveHome = "/usr/local/Cellar/hive/2.0.1";
 	private static boolean LOGGING = false;
 	
 	public HiveClient(){ }
@@ -19,15 +18,15 @@ public class HiveClient {
 		this.defaultDatabase = defaultDatabase;
 		LOGGING = logging;
 	}
-	
+
 	public String executeHiveQuery(String query) throws IOException {
 		
 		System.out.println("Running in HIVE: " + query);
+		
 		// Prepare the command to run in bash
 		StringBuilder querysSB = new StringBuilder();
 		querysSB.append("source " + bashProfile + "; ");
-		querysSB.append("cd " + hiveHome + "; ");
-		querysSB.append("./bin/hive -e \"");
+		querysSB.append("hive -e \"");
 		if(defaultDatabase.length() != 0)
 			querysSB.append("USE " + defaultDatabase + "; ");
 		querysSB.append(query);

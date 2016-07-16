@@ -1,3 +1,14 @@
+CREATE TABLE IF NOT EXISTS wordlistReviews(
+     id INT,
+   word STRING,
+reviews STRING
+) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+
+CREATE TABLE IF NOT EXISTS wordlist(
+  id INT,
+word STRING
+) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+
 CREATE TABLE IF NOT EXISTS checkin(
  business_id STRING,
 checkin_info STRING
@@ -12,12 +23,13 @@ business_id STRING,
 ) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
 
 CREATE TABLE IF NOT EXISTS review(
+  review_id STRING,
 business_id STRING,
     user_id STRING,
       stars DECIMAL(10,6),
        text STRING,
          ds DATE,
-      votes INT
+      votes STRING
 ) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
 
 CREATE TABLE IF NOT EXISTS business(

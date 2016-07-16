@@ -1,0 +1,87 @@
+select trim(regexp_replace(word, '[^a-zA-Z0-9_]+', '')) as word from (select explode(word) as word from (select split(lower(text)," ") as word from review limit 1000) A) B where word rlike '^[a-z]' group by word order by word desc;
+
+
+  SELECT ROW_NUMBER() OVER (), 
+         wordC AS word 
+    FROM (
+          SELECT TRIM(regexp_replace(wordB, '[^a-zA-Z0-9]+', '')) AS wordC 
+            FROM (
+                  SELECT EXPLODE(wordA) AS wordB 
+                    FROM (
+                          SELECT SPLIT(LOWER(text)," ") AS wordA 
+                            FROM review 
+                           LIMIT 1000
+                         ) A
+                 ) B 
+         ) C 
+   WHERE wordC RLIKE '^[a-z]'     
+GROUP BY wordC 
+ORDER BY wordC DESC;
+
+
+
+
+SELECT COUNT(*) FROM(
+  SELECT wordC AS word 
+    FROM (
+          SELECT TRIM(regexp_replace(wordB, '[^a-zA-Z0-9]+', '')) AS wordC 
+            FROM (
+                  SELECT EXPLODE(wordA) AS wordB 
+                    FROM (
+                          SELECT SPLIT(LOWER(text)," ") AS wordA 
+                            FROM review 
+                         ) A
+                 ) B 
+         ) C 
+   WHERE wordC RLIKE '^[a-z]'     
+GROUP BY wordC 
+ORDER BY wordC DESC
+) D;
+
+
+
+COSINE SIMILARITY
+
+
+1. Get the sorted word list (with index) -> HIVE QUERY?
+TRUNCATE TABLE wordlist;
+INSERT INTO wordlist
+     SELECT ROW_NUMBER() OVER (), 
+            wordC AS word 
+       FROM (
+             SELECT TRIM(regexp_replace(wordB, '[^a-zA-Z0-9]+', '')) AS wordC 
+               FROM (
+                     SELECT EXPLODE(wordA) AS wordB 
+                       FROM (
+                             SELECT SPLIT(LOWER(text)," ") AS wordA 
+                               FROM review 
+                            ) A
+                    ) B 
+            ) C 
+      WHERE wordC RLIKE '^[a-z]'     
+   GROUP BY wordC 
+   ORDER BY wordC DESC;
+   
+   
+2. Get the sorted word list (with index) -> HIVE QUERY?
+TRUNCATE TABLE wordlist;
+INSERT INTO wordlist
+     SELECT ROW_NUMBER() OVER (), 
+            wordC AS word 
+       FROM (
+             SELECT TRIM(regexp_replace(wordB, '[^a-zA-Z0-9]+', '')) AS wordC 
+               FROM (
+                     SELECT EXPLODE(wordA) AS wordB 
+                       FROM (
+                             SELECT SPLIT(LOWER(text)," ") AS wordA 
+                               FROM review 
+                            ) A
+                    ) B 
+            ) C 
+      WHERE wordC RLIKE '^[a-z]'     
+   GROUP BY wordC 
+   ORDER BY wordC DESC;
+
+
+3. In every review, get the word count and map it with sorted word list above to get
+(indexInWordList,countInReview)

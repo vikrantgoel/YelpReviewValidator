@@ -46,8 +46,7 @@ public class FileClient {
 	        is.close();
 	    }
 	}
-	public void jsonToTsv(String commaSeparatedColumns, String sourceFilename, String destFilename, String delimiter) throws IOException, ParseException{
-
+	public void jsonToTsv(String commaSeparatedColumns, String sourceFilename, String destFilename, String delimiter, int autoIncrementPosition) throws IOException, ParseException{
 
 		JSONParser parser = new JSONParser();
 		JSONObject obj;
@@ -60,14 +59,23 @@ public class FileClient {
 		PrintWriter pWriter = new PrintWriter (new FileWriter (outFile));
 
 		StringBuilder sb;
+		
+		int autoincrement = 0;
 		while (sc.hasNextLine()) {
 			sb = new StringBuilder();
 
 			// READ FROM FILE
 			obj = (JSONObject)parser.parse(sc.nextLine().replaceAll("\\\\n", " "));
-			for(String str: commaSeparatedColumns.split(",")){
-				str = str.trim();
-				sb.append(obj.get(str).toString() + delimiter);
+			String [] temp = commaSeparatedColumns.split(",");
+			
+			if(temp.length < autoIncrementPosition)
+				 autoIncrementPosition = -1;
+			
+			for(int i=0 ; i<temp.length; i++){
+				if(i == autoIncrementPosition)
+					sb.append((autoincrement++) + delimiter);
+				else
+					sb.append(obj.get(temp[i].trim()).toString() + delimiter);
 			}
 			sb.append("\n");
 

@@ -26,7 +26,7 @@ public class YelpMaster {
 		ht.loadFromFileToTable(new File("yelp_academic_dataset_tip.txt").getAbsolutePath(), "tip", true, hc);
 	}
 	public static void reviewLoadToHive() throws Exception{
-		ft.transformJsonToTsv("business_id,user_id,stars,text,date,votes", "yelp_academic_dataset_review.json", "yelp_academic_dataset_review.txt", "\t", fc);
+		ft.transformJsonToTsv("review_id, business_id,user_id,stars,text,date,votes", "yelp_academic_dataset_review.json", "yelp_academic_dataset_review.txt", "\t", fc, 0);
 		ht.loadFromFileToTable(new File("yelp_academic_dataset_review.txt").getAbsolutePath(), "review", true, hc);
 	}
 	public static void businessLoadToHive() throws Exception{

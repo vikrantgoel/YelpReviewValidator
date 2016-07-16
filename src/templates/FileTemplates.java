@@ -13,12 +13,15 @@ public class FileTemplates {
 	 * @param fileClient
 	 * @throws Exception 
 	 */
-	public void transformJsonToTsv(String commaSeparatedColumns, String sourceFilename, String destFilename, String delimiter, FileClient fc) throws Exception{
+	public void transformJsonToTsv(String commaSeparatedColumns, String sourceFilename, String destFilename, String delimiter, FileClient fc, int autoIncrementPosition) throws Exception{
 		int sourceFileCount = fc.countLines(sourceFilename);
-		fc.jsonToTsv(commaSeparatedColumns, sourceFilename, destFilename, delimiter);
+		fc.jsonToTsv(commaSeparatedColumns, sourceFilename, destFilename, delimiter, autoIncrementPosition);
 		int destFileCount = fc.countLines(destFilename);
 		
 		if(sourceFileCount != destFileCount)
 			throw new Exception("Size of source file: " + sourceFileCount + " is not equal to size of destination file: " + destFileCount);
+	}
+	public void transformJsonToTsv(String commaSeparatedColumns, String sourceFilename, String destFilename, String delimiter, FileClient fc) throws Exception{
+		transformJsonToTsv(commaSeparatedColumns, sourceFilename, destFilename, delimiter, fc, -1);
 	}
 }
